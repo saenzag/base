@@ -1,0 +1,54 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+       {
+           "name": "Debug ficha",
+           "type": "cppvsdbg",
+           "request": "launch",
+           "program": "${workspaceFolder}/build/Debug/ficha.exe",
+           "args": [],
+           "stopAtEntry": false,
+           "cwd": "${workspaceFolder}",
+           "environment": [],
+           "console": "internalConsole", // cmd or debug console
+           "preLaunchTask": "build ficha Debug",
+       },
+       {
+           "name": "Release ficha",
+           "type": "cppvsdbg",
+           "request": "launch",
+           "program": "${workspaceFolder}/build/Release/ficha.exe",
+           "args": [],
+           "stopAtEntry": false,
+           "cwd": "${workspaceFolder}",
+           "environment": [],
+           "console": "internalConsole", // cmd or debug console
+           "preLaunchTask": "build ficha Release",
+       }
+, 
+       {
+           "name": "Debug reinas",
+           "type": "cppvsdbg",
+           "request": "launch",
+           "program": "${workspaceFolder}/build/Debug/reinas.exe",
+           "args": [],
+           "stopAtEntry": false,
+           "cwd": "${workspaceFolder}",
+           "environment": [],
+           "console": "internalConsole", // cmd or debug console
+           "preLaunchTask": "build reinas Debug",
+       },
+       {
+           "name": "Release reinas",
+           "type": "cppvsdbg",
+           "request": "launch",
+           "program": "${workspaceFolder}/build/Release/reinas.exe",
+           "args": [],
+           "stopAtEntry": false,
+           "cwd": "${workspaceFolder}",
+           "environment": [],
+           "console": "internalConsole", // cmd or debug console
+           "preLaunchTask": "build reinas Release",
+       }
+    ]
+}

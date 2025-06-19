@@ -1,0 +1,7 @@
+.git/
+#tengo que borrar esto
+CopiaDeSeguridadDeCML.txt
+
+projects/
+build/
+#deps/
