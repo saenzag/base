@@ -21,6 +21,11 @@ if not exist "%VSCODE_DIR%" (
     mkdir "%VSCODE_DIR%"
 )
 
+:: Ensure projects directory exists
+if not exist "%PROJECTS_DIR%" (
+    mkdir "%PROJECTS_DIR%"
+)
+
 :: Start JSON file
 (
     echo {
