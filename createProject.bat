@@ -51,6 +51,11 @@ set "PROJECT_CONFIG_FILE=%PROJECTS_DIR%\%PROJECT_NAME%\project_config.cmake"
     echo # Project configuration for %PROJECT_NAME%
     echo set^(USE_SFML ON^)
     echo set^(USE_IMGUI_SFML ON^)
+    echo.
+    echo # List of include directories for this project ^(paths relative to this project folder^)
+    echo set^(PROJECT_INCLUDE_DIRS
+    echo     "${CMAKE_CURRENT_LIST_DIR}/include"
+    echo ^)
 )
 
 if exist "%PROJECT_CONFIG_FILE%" (
