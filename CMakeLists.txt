@@ -7,6 +7,15 @@ set(CMAKE_CXX_STANDARD 20)
 # So ImGui-SFML can find ImGui...
 set(IMGUI_DIR ${PROJECT_SOURCE_DIR}/deps/imgui)
 
+# SFML
+add_subdirectory(${PROJECT_SOURCE_DIR}/deps/SFML)
+
+# Disable find_package for SFML since we're building it as subdirectory
+set(IMGUI_SFML_FIND_SFML OFF)
+
+# IMGUI-SFML
+add_subdirectory(${PROJECT_SOURCE_DIR}/deps/imgui-sfml)
+
 #Search for all projects in the projects folder
 file(GLOB CHILD_PROJECTS RELATIVE ${PROJECT_SOURCE_DIR}/projects ${PROJECT_SOURCE_DIR}/projects/*)
 
@@ -36,7 +45,7 @@ foreach(PROJECT ${CHILD_PROJECTS})
 
         set(PROJECT_LIBS "")  # limpiamos
         if(USE_SFML) # SFML
-                target_link_directories(${PROJECT_NAME} PRIVATE
+                target_include_directories(${PROJECT_NAME} PRIVATE
                         "${PROJECT_SOURCE_DIR}/deps/SFML/include"
                 )
                 list(APPEND PROJECT_LIBS sfml-graphics sfml-window sfml-system)
@@ -54,8 +63,3 @@ foreach(PROJECT ${CHILD_PROJECTS})
         #target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window sfml-system ImGui-SFML)
 endforeach()
 
-# SFML
-add_subdirectory(${PROJECT_SOURCE_DIR}/deps/SFML)
-
-# IMGUI-SFML
-add_subdirectory(${PROJECT_SOURCE_DIR}/deps/imgui-sfml)
