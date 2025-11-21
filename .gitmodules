@@ -7,3 +7,6 @@
 [submodule "deps/imgui-sfml"]
 	path = deps/imgui-sfml
 	url = https://github.com/SFML/imgui-sfml.git
+[submodule "deps/glfw"]
+	path = deps/glfw
+	url = https://github.com/glfw/glfw

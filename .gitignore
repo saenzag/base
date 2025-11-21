@@ -5,4 +5,5 @@ CopiaDeSeguridadDeCML.txt
 .vscode/
 projects/
 build/
+imgui.ini
 #deps/
