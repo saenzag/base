@@ -16,6 +16,14 @@ set(CMAKE_CXX_STANDARD 20)
 
         # IMGUI-SFML
         add_subdirectory(${PROJECT_SOURCE_DIR}/deps/imgui-sfml)
+
+        # GLFW
+        set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "Disable GLFW examples")
+        set(GLFW_BUILD_TESTS OFF CACHE BOOL "Disable GLFW tests")
+        set(GLFW_BUILD_DOCS OFF CACHE BOOL "Disable GLFW docs")
+
+        add_subdirectory(${PROJECT_SOURCE_DIR}/deps/glfw)
+        find_package(OpenGL REQUIRED)
 ### End DEPS ###
 
 #Search for all projects in the projects folder
@@ -59,6 +67,11 @@ foreach(PROJECT ${CHILD_PROJECTS})
         if(USE_IMGUI_SFML) # IMGUI
                 list(APPEND PROJECT_LIBS ImGui-SFML)
         endif()
+
+        if(USE_GLFW)
+              list(APPEND PROJECT_LIBS glfw OpenGL::GL)  
+        endif()
+        
 
         # Linkear solo si hay algo
         if(PROJECT_LIBS)

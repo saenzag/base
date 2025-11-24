@@ -53,7 +53,7 @@ for /d %%D in (%PROJECTS_DIR%\*) do (
         echo            "stopAtEntry": false,
         echo            "cwd": "${workspaceFolder}",
         echo            "environment": [],
-        echo            "console": "internalConsole", // cmd or debug console
+        echo            "console": "integratedTerminal", // internalConsole, externalTerminal
         echo            "preLaunchTask": "build !PROJECT_NAME! Debug",
         echo        },
     ) >> "%OUTPUT_LAUNCH_FILE%"
@@ -68,7 +68,7 @@ for /d %%D in (%PROJECTS_DIR%\*) do (
         echo            "stopAtEntry": false,
         echo            "cwd": "${workspaceFolder}",
         echo            "environment": [],
-        echo            "console": "internalConsole", // cmd or debug console
+        echo            "console": "integratedTerminal", // internalConsole, externalTerminal
         echo            "preLaunchTask": "build !PROJECT_NAME! Release",
         echo        }
     ) >> "%OUTPUT_LAUNCH_FILE%"
