@@ -52,6 +52,7 @@ set "PROJECT_CONFIG_FILE=%PROJECTS_DIR%\%PROJECT_NAME%\project_config.cmake"
     echo set^(USE_SFML ON^)
     echo set^(USE_IMGUI_SFML ON^)
     echo set^(USE_GLFW OFF^)
+    echo set^(USE_OPENGL OFF^)
     echo.
     echo # List of include directories for this project ^(paths relative to this project folder^)
     echo set^(PROJECT_INCLUDE_DIRS

@@ -22,6 +22,7 @@ set(CMAKE_CXX_STANDARD 20)
         set(GLFW_BUILD_TESTS OFF CACHE BOOL "Disable GLFW tests")
         set(GLFW_BUILD_DOCS OFF CACHE BOOL "Disable GLFW docs")
 
+        # Glfw, glad, OpenGL
         add_subdirectory(${PROJECT_SOURCE_DIR}/deps/glfw)
         find_package(OpenGL REQUIRED)
 ### End DEPS ###
@@ -56,7 +57,7 @@ foreach(PROJECT ${CHILD_PROJECTS})
                         )
         endif()
 
-        set(PROJECT_LIBS "")  # limpiamos
+        set(PROJECT_LIBS "")  # clean
         if(USE_SFML) # SFML
                 target_include_directories(${PROJECT_NAME} PRIVATE
                         "${PROJECT_SOURCE_DIR}/deps/SFML/include"
@@ -69,13 +70,16 @@ foreach(PROJECT ${CHILD_PROJECTS})
         endif()
 
         if(USE_GLFW)
-              list(APPEND PROJECT_LIBS glfw OpenGL::GL)  
+              list(APPEND PROJECT_LIBS glfw)  
         endif()
-        
+
+        if(USE_OPENGL)
+              list(APPEND PROJECT_LIBS glad OpenGL::GL)  
+        endif()     
 
         # Linkear solo si hay algo
         if(PROJECT_LIBS)
-                target_link_libraries(${PROJECT_NAME} ${PROJECT_LIBS})
+                target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_LIBS})
         endif()
 endforeach()
 
