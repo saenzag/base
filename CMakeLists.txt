@@ -24,6 +24,7 @@ set(CMAKE_CXX_STANDARD 20)
 
         # Glfw, glad, OpenGL
         add_subdirectory(${PROJECT_SOURCE_DIR}/deps/glfw)
+        add_subdirectory(${PROJECT_SOURCE_DIR}/deps/glad)
         find_package(OpenGL REQUIRED)
 ### End DEPS ###
 
