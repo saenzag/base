@@ -13,3 +13,6 @@
 [submodule "deps/glad"]
 	path = deps/glad
 	url = https://github.com/saenzag/glad
+[submodule "deps/cmath"]
+	path = deps/cmath
+	url = https://github.com/saenzag/cmath.git
