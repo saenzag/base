@@ -16,3 +16,4 @@
 [submodule "deps/cmath"]
 	path = deps/cmath
 	url = https://github.com/saenzag/cmath.git
+	branch = main
