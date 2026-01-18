@@ -26,6 +26,9 @@ set(CMAKE_CXX_STANDARD 20)
         add_subdirectory(${PROJECT_SOURCE_DIR}/deps/glfw)
         add_subdirectory(${PROJECT_SOURCE_DIR}/deps/glad)
         find_package(OpenGL REQUIRED)
+
+        # Cmath
+        add_subdirectory(${PROJECT_SOURCE_DIR}/deps/cmath)
 ### End DEPS ###
 
 #Search for all projects in the projects folder
@@ -34,8 +37,19 @@ file(GLOB CHILD_PROJECTS RELATIVE ${PROJECT_SOURCE_DIR}/projects ${PROJECT_SOURC
 foreach(PROJECT ${CHILD_PROJECTS})
         set(PROJECT_NAME ${PROJECT})
         set(PROJECT_INCLUDE_DIRS "")
+        
+        # Default options
+        set(USE_SFML OFF)
+        set(USE_IMGUI_SFML OFF)
+        set(USE_GLFW OFF)
+        set(USE_OPENGL OFF)
+        set(USE_CMATH OFF)
 
         # Incluir configuración del proyecto
+        if(NOT EXISTS "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/project_config.cmake")
+                message(FATAL_ERROR "Project configuration file not found for project: ${PROJECT}")   
+        endif()
+        
         include("${PROJECT_SOURCE_DIR}/projects/${PROJECT}/project_config.cmake")
 
         # Gather source and header files
@@ -47,6 +61,10 @@ foreach(PROJECT ${CHILD_PROJECTS})
         file(GLOB_RECURSE INC_FILES CONFIGURE_DEPENDS
                 "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.h"
                 "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.hpp")
+
+        if(IS_INTERFACE)
+                #SET(PROJECT_NAME "${PROJECT_NAME}")
+        endif()
 
         # Create executable for each project
         add_executable(${PROJECT_NAME} ${SRC_FILES} ${INC_FILES})
@@ -76,7 +94,11 @@ foreach(PROJECT ${CHILD_PROJECTS})
 
         if(USE_OPENGL)
               list(APPEND PROJECT_LIBS glad OpenGL::GL)  
-        endif()     
+        endif()    
+        
+        if(USE_CMATH)
+              list(APPEND PROJECT_LIBS cmath_interface)  
+        endif()        
 
         # Linkear solo si hay algo
         if(PROJECT_LIBS)
