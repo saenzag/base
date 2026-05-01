@@ -53,14 +53,16 @@ foreach(PROJECT ${CHILD_PROJECTS})
         include("${PROJECT_SOURCE_DIR}/projects/${PROJECT}/project_config.cmake")
 
         # Gather source and header files
-        file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
-                "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.cpp"
-                "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.cc"
-                "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.c")
-                
-        file(GLOB_RECURSE INC_FILES CONFIGURE_DEPENDS
-                "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.h"
-                "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.hpp")
+        if (NOT USE_CUSTOM_FILES)
+                file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS
+                        "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.cpp"
+                        "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.cc"
+                        "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.c")
+                        
+                file(GLOB_RECURSE INC_FILES CONFIGURE_DEPENDS
+                        "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.h"
+                        "${PROJECT_SOURCE_DIR}/projects/${PROJECT}/*.hpp")
+        endif()
 
         if(IS_INTERFACE)
                 #SET(PROJECT_NAME "${PROJECT_NAME}")
